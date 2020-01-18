@@ -1,9 +1,19 @@
 import React from 'react'
+import {connect} from 'react-redux'
+import {onMoreButtonClick} from '../redux/actions'
 
-const MoreButton = (props) => {
-    return <button onClick={/* Fill me in! */ null}>
-            More sushi!
-          </button>
+const MoreButton = ({onMoreButtonClick}) => {
+  return (
+    <button onClick={onMoreButtonClick}>
+      More sushi!
+    </button>
+  )
 }
 
-export default MoreButton
+const mapDispatchToProps = dispatch => {
+  return {
+    onMoreButtonClick: () => dispatch(onMoreButtonClick())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(MoreButton)

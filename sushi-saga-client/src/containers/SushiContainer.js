@@ -1,19 +1,42 @@
-import React, { Fragment } from 'react'
+import React, {Fragment, useEffect} from 'react'
 import MoreButton from '../components/MoreButton'
+import {fetchSushis} from '../redux/actions'
+import {connect} from 'react-redux'
+import {isEmpty} from 'lodash'
+import Sushi from '../components/Sushi'
 
-const SushiContainer = (props) => {
+const SushiContainer = ({sushis, fetchSushis}) => {
+  useEffect(() => {
+    if (isEmpty(sushis)) {
+      fetchSushis()
+    }
+  }, [])
+
+  let fourSushis
+  if (!isEmpty(sushis)) {
+    fourSushis = sushis.slice(0, 4).map(sushi => <Sushi key={sushi.id} sushi={sushi}/>)
+  }
+
   return (
     <Fragment>
       <div className="belt">
-        {
-          /* 
-             Render Sushi components here!
-          */
-        }
+        {fourSushis}
         <MoreButton />
       </div>
     </Fragment>
   )
 }
 
-export default SushiContainer
+const mapStateToProps = state => {
+  return {
+    sushis: state.sushis.sushis
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchSushis: () => dispatch(fetchSushis())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SushiContainer)
