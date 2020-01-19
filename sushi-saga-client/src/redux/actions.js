@@ -12,7 +12,7 @@ export const fetchSushis = () => {
     })
     .then(response => {
       let sushis = response.data
-      sushis.forEach(sushi => sushis['eaten'] = false)
+      sushis.forEach(sushi => sushi['eaten'] = false)
       dispatch(fetchSushisSuccess(sushis))
     })
     .catch(error => dispatch(fetchSushisFail(error)))
@@ -51,4 +51,13 @@ export const onMoreButtonClick = () => {
     type: actionTypes.MORE_BUTTON_WAS_CLICKED
   }
 }
-// end of MORE BUTTOn
+// end of MORE BUTTON
+
+// start of EAT SUSHI
+export const eatSushi = sushiID => {
+  return {
+    type: actionTypes.SUSHI_WAS_EATEN,
+    sushiID: sushiID
+  }
+}
+// end of EAT SUSHI

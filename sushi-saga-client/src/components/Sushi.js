@@ -1,10 +1,12 @@
 import React from 'react'
+import {eatSushi} from '../redux/actions'
+import {connect} from 'react-redux'
 
-const Sushi = ({sushi}) => {
+const Sushi = ({sushi, eatSushi}) => {
   return (
     <div className="sushi">
       <div className="plate"
-           onClick={/* Give me a callback! */ null}>
+        onClick={() => eatSushi(sushi.id)}>
         {
           sushi.eaten
           ?
@@ -20,4 +22,10 @@ const Sushi = ({sushi}) => {
   )
 }
 
-export default Sushi
+const mapDispatchToProps = dispatch => {
+  return {
+    eatSushi: sushiID => dispatch(eatSushi(sushiID))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Sushi)

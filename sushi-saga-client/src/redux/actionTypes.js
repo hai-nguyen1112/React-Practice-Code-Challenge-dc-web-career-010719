@@ -7,3 +7,7 @@ export const FETCH_SUSHIS_FAIL = 'FETCH_SUSHIS_FAIL'
 // start of MORE BUTTON
 export const MORE_BUTTON_WAS_CLICKED = 'MORE_BUTTON_WAS_CLICKED'
 // end of MORE BUTTON
+
+// start of EAT SUSHI
+export const SUSHI_WAS_EATEN = 'SUSHI_WAS_EATEN'
+// end of EAT SUSHI

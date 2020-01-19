@@ -3,9 +3,11 @@ import * as actionTypes from './actionTypes'
 
 const initialState = {
   sushis: {
+    emptyPlates: [],
     sushis: [],
     isLoadingSushis: false,
-    loadSushisError: null
+    loadSushisError: null,
+    budget: 100
   }
 }
 
@@ -51,12 +53,36 @@ const onMoreButtonClick = (state, action) => {
   })
 }
 
+const eatSushi = (state, action) => {
+  let sushis = JSON.parse(JSON.stringify(state.sushis))
+  let clickedSushi = sushis.find(sushi => sushi.id === action.sushiID)
+  let emptyPlates = JSON.parse(JSON.stringify(state.emptyPlates))
+  let budget = state.budget
+
+  if (clickedSushi['eaten'] === false) {
+    if (clickedSushi['price'] <= budget) {
+      clickedSushi['eaten'] = true
+      emptyPlates.push(clickedSushi)
+      budget = budget - clickedSushi['price']
+    } else {
+      alert('You need to add more money!')
+    }
+  }
+
+  return updateObject(state, {
+    sushis: sushis,
+    emptyPlates: emptyPlates,
+    budget: budget
+  })
+}
+
 const sushisReducer = (state = initialState.sushis, action) => {
   switch (action.type) {
     case actionTypes.FETCH_SUSHIS_START: return fetchSushisStart(state, action)
     case actionTypes.FETCH_SUSHIS_SUCCESS: return fetchSushisSuccess(state, action)
     case actionTypes.FETCH_SUSHIS_FAIL: return fetchSushisFail(state, action)
     case actionTypes.MORE_BUTTON_WAS_CLICKED: return onMoreButtonClick(state, action)
+    case actionTypes.SUSHI_WAS_EATEN: return eatSushi(state, action)
     default: return state
   }
 }
