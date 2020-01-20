@@ -1,12 +1,13 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {onMoreButtonClick} from '../redux/actions'
+import Button from '@material-ui/core/Button'
 
 const MoreButton = ({onMoreButtonClick}) => {
   return (
-    <button onClick={onMoreButtonClick}>
-      More sushi!
-    </button>
+    <Button variant="contained" color="primary" onClick={onMoreButtonClick}>
+      More sushi
+    </Button>
   )
 }
 

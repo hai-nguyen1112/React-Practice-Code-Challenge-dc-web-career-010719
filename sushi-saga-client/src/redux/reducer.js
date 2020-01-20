@@ -47,10 +47,7 @@ const fetchSushisFail = (state, action) => {
 
 const onMoreButtonClick = (state, action) => {
   let sushis = JSON.parse(JSON.stringify(state.sushis))
-  let fourSushis = sushis.splice(0, 4)
-  for (const sushi of fourSushis) {
-    sushis.push(sushi)
-  }
+  sushis.push(sushis.splice(0, 1))
 
   return updateObject(state, {
     sushis: sushis

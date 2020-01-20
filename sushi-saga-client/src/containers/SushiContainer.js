@@ -1,12 +1,22 @@
 import React, {Fragment, useEffect} from 'react'
-import MoreButton from '../components/MoreButton'
 import {fetchSushis} from '../redux/actions'
 import {connect} from 'react-redux'
 import {isEmpty} from 'lodash'
 import Sushi from '../components/Sushi'
-import ResetButton from '../components/ResetButton'
+import {makeStyles} from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
+import Grid from '@material-ui/core/Grid'
+
+const useStyles = makeStyles(theme => ({
+  paperContainer: {
+    marginTop: theme.spacing(2),
+    padding: theme.spacing(2)
+  }
+}))
 
 const SushiContainer = ({sushis, fetchSushis}) => {
+  const classes = useStyles()
+
   useEffect(() => {
     if (isEmpty(sushis)) {
       fetchSushis()
@@ -20,14 +30,11 @@ const SushiContainer = ({sushis, fetchSushis}) => {
 
   return (
     <Fragment>
-      <div className="belt">
-        {fourSushis}
-        <MoreButton />
-        &nbsp;
-        &nbsp;
-        &nbsp;
-        <ResetButton />
-      </div>
+      <Paper className={classes.paperContainer}>
+        <Grid container spacing={3}>
+          {fourSushis}
+        </Grid>
+      </Paper>
     </Fragment>
   )
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import {resetGame, fetchSushis} from '../redux/actions'
 import {connect} from 'react-redux'
+import Button from '@material-ui/core/Button'
 
 const ResetButton = ({resetGame, fetchSushis}) => {
 
@@ -10,9 +11,9 @@ const ResetButton = ({resetGame, fetchSushis}) => {
   }
 
   return (
-    <button onClick={onResetGame}>
+    <Button variant="contained" color="primary" onClick={onResetGame}>
       Reset Game
-    </button>
+    </Button>
   )
 }
 
