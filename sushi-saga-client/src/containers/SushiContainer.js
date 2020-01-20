@@ -4,6 +4,7 @@ import {fetchSushis} from '../redux/actions'
 import {connect} from 'react-redux'
 import {isEmpty} from 'lodash'
 import Sushi from '../components/Sushi'
+import ResetButton from '../components/ResetButton'
 
 const SushiContainer = ({sushis, fetchSushis}) => {
   useEffect(() => {
@@ -22,6 +23,10 @@ const SushiContainer = ({sushis, fetchSushis}) => {
       <div className="belt">
         {fourSushis}
         <MoreButton />
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        <ResetButton />
       </div>
     </Fragment>
   )

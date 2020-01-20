@@ -32,8 +32,8 @@ const Table = ({emptyPlates, budget}) => {
 
 const mapStateToProps = state => {
   return {
-    emptyPlates: state.sushis.emptyPlates,
-    budget: state.sushis.budget
+    emptyPlates: state.table.emptyPlates,
+    budget: state.wallet.money
   }
 }
 

@@ -54,10 +54,19 @@ export const onMoreButtonClick = () => {
 // end of MORE BUTTON
 
 // start of EAT SUSHI
-export const eatSushi = sushiID => {
+export const eatSushi = (sushi, budget) => {
   return {
     type: actionTypes.SUSHI_WAS_EATEN,
-    sushiID: sushiID
+    sushi: sushi,
+    budget: budget
   }
 }
 // end of EAT SUSHI
+
+// start of RESET GAME
+export const resetGame = () => {
+  return {
+    type: actionTypes.GAME_WAS_RESET
+  }
+}
+// end of RESET GAME

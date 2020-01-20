@@ -11,3 +11,7 @@ export const MORE_BUTTON_WAS_CLICKED = 'MORE_BUTTON_WAS_CLICKED'
 // start of EAT SUSHI
 export const SUSHI_WAS_EATEN = 'SUSHI_WAS_EATEN'
 // end of EAT SUSHI
+
+// start of RESET GAME
+export const GAME_WAS_RESET = 'GAME_WAS_RESET'
+// end of RESET GAME

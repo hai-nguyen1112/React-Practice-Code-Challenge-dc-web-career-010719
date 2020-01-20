@@ -2,11 +2,11 @@ import React from 'react'
 import {eatSushi} from '../redux/actions'
 import {connect} from 'react-redux'
 
-const Sushi = ({sushi, eatSushi}) => {
+const Sushi = ({sushi, eatSushi, budget}) => {
   return (
     <div className="sushi">
       <div className="plate"
-        onClick={() => eatSushi(sushi.id)}>
+        onClick={() => eatSushi(sushi, budget)}>
         {
           sushi.eaten
           ?
@@ -22,10 +22,16 @@ const Sushi = ({sushi, eatSushi}) => {
   )
 }
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
   return {
-    eatSushi: sushiID => dispatch(eatSushi(sushiID))
+    budget: state.wallet.money
   }
 }
 
-export default connect(null, mapDispatchToProps)(Sushi)
+const mapDispatchToProps = dispatch => {
+  return {
+    eatSushi: (sushi, budget) => dispatch(eatSushi(sushi, budget))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sushi)
